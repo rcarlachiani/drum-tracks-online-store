@@ -15,5 +15,5 @@ En ésta oportunidad, el mismo se trata de una tienda de pistas de batería pre 
 En principio fue desarrollado con JS Vainilla y luego, se incorporó el uso de la librería JQuery 
 <br/>
 para la manipulación del DOM, incorporación de eventos, animaciones, etc.
-<br/>
+
 :battery: En progreso (11/2021)
