@@ -2,23 +2,18 @@
 
 let productsDOM = document.getElementsByClassName("products") // div que contiene la descripcion del producto
 let addButtonDOM = document.getElementsByClassName("addButton") // Botones para añadir el producto al carrito
-let counterDOM = document.getElementById("counter") // Contador de productos agregados al carrito
-let showCartDOM = document.getElementById("showCart") // Boton para mostrar el carrito
-let emptyCartDOM = document.getElementById("removeCart") // Boton para vaciar el carrito
-let cartDOM = document.getElementById("cart") // ul vacio para generar el carrito
 
 ///////////////// MAIN CODE /////////////////
 
-// Instanciado de carrito, productos y contador de productos
+// Instanciado de carrito y productos
 let carrito = []
-let counterProducts = 0
 let productsArr = []
-productsArr.push(new product("1", "Rock stereo track", "U$S2", 1))
-productsArr.push(new product("2", "Rock multi track", "U$S10", 1))
-productsArr.push(new product("3", "Indie stereo track", "U$S2", 1))
-productsArr.push(new product("4", "Indie multi track", "U$S10", 1))
-productsArr.push(new product("5", "Metal stereo track", "U$S2", 1))
-productsArr.push(new product("6", "Metal multi track", "U$S10", 1))
+productsArr.push(new Product("1", "Rock stereo track", "U$S2", 1))
+productsArr.push(new Product("2", "Rock multi track", "U$S10", 1))
+productsArr.push(new Product("3", "Indie stereo track", "U$S2", 1))
+productsArr.push(new Product("4", "Indie multi track", "U$S10", 1))
+productsArr.push(new Product("5", "Metal stereo track", "U$S2", 1))
+productsArr.push(new Product("6", "Metal multi track", "U$S10", 1))
 
 // Bucle que toma los hijos del contenedor "productsDOM" y reemplaza su contenido por el de los productos
 for (i=0; i<productsArr.length; i++) {
@@ -32,20 +27,20 @@ for (button of addButtonDOM) {
 }
 
 // Evento del boton "Show cart"
-showCartDOM.addEventListener("click", showCart)
+$("#showCart").on("click", showCart)
 
 // Evento del boton "Empty cart"
-emptyCartDOM.addEventListener("click", emptyCart)
+$("#removeCart").on("click", emptyCart)
 
 // Creacion del contador en HTML
 let counterHTML = document.createElement("h3")
-counterHTML.innerHTML = " (" + counterProducts + ") "
-counterDOM.appendChild(counterHTML)
+counterHTML.innerHTML = " (" + carrito.length + ") "
+$("#counter").append(counterHTML)
 
 ///////////////// FUNCIONES /////////////////
 
 // Funcion que construye los productos
-function product (id, name, price, stock) {
+function Product (id, name, price, stock) {
     this.id = id
     this.name = name
     this.price = price
@@ -64,7 +59,7 @@ function addCart (e) {
             alert("Se agrego " + " '" + productsArr[i].name + "' " +  " al carrito")
             let carritoHTML = document.createElement("li")
             carritoHTML.innerHTML = productsArr[i].name + " - " + productsArr[i].price 
-            cartDOM.appendChild(carritoHTML)
+            $("#cart").append(carritoHTML)
             updateContent()
         }    
     }
@@ -72,26 +67,24 @@ function addCart (e) {
 
 // Funcion que muestra el carrito si es que tiene productos, quitando el display none 
 function showCart () {
-    if (carrito == '') {
+    if (carrito.length == 0) {
         alert("Su carrito no contiene productos")
     } else {
-        cartDOM.style.display = "block"
+        $("#cart").css("display", "block")
     }
 }
 
-// Funcion que vacia el carrito, contador del carrito, storage y el HTML creado
+// Funcion que reinicia el contador, vacia el carrito, storage y el HTML creado
 function emptyCart () {
     carrito = []
-    cartDOM.innerHTML = ''
-    counterProducts = 0
-    counterHTML.innerHTML = " (" + counterProducts + ") " 
-    cartDOM.style.display = "none"
+    counterHTML.innerHTML = " (" + carrito.length + ") " 
+    $("#cart").css("display", "none")
+    $("#cart").html('')
     sessionStorage.clear()
     alert("Su carrito fue vaciado")
 }
 
 // Funcion que actualiza el contador del carrito
 function updateContent () {
-    counterProducts++
-    counterHTML.innerHTML = " (" + counterProducts + ") "
+    counterHTML.innerHTML = " (" + carrito.length + ") "
 }
