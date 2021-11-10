@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@500&family=Raleway:wght@200&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body style="font-family: 'Raleway', sans-serif;">
+
+    <div style="display: flex; justify-content: center;">
+        <img src="https://i.ibb.co/vQHZq32/snLogo.png" alt="store logo" style="margin-right: 20px;">
+        <h1>
+            DRUMTRACK STORE
+        </h1>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: center;">
+        <img src="https://i.ibb.co/jvJ2xSZ/carrito.png" alt="carrito" style="width: 30px; margin: 10px;">
+        <h2 style="font-size: 30px; margin: 10px;">CART</h2>
+        <div id="counter" style="margin: 10px;"></div>
+    </div>
+    
+    <div style="display: flex; justify-content: center;">
+        <button id="showCart" style="width: 80px; margin: 10px;">Show Cart</button>
+        <button id="removeCart" style="width: 80px; margin: 10px;">Empty cart</button>
+    </div>
+
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <ul id="cart" style="background-color: rgb(230, 230, 230); border: 1px solid black; border-radius: 5px; padding: 10px 15px 10px 30px ; display: none; box-shadow: 2px 2px 5px rgb(87, 87, 87); font-weight: bold; margin-top: 30px">    
+        </ul>
+    </div>
+    
+    <div style="display: flex; justify-content: space-around; width: 1200px; margin: 0 auto" class="container">
+        
+        <div style="text-align: center; padding: 20px; margin: 20px;">
+            <h2>Track 1</h2>
+            <div class= "products" style="border: 1px solid rgb(105, 105, 105); border-radius: 5px; padding: 20px; margin: 30px; box-shadow: 3px 3px 5px rgb(51, 51, 51);">
+                <img src="https://i.ibb.co/2M7K8BB/waveform.png" alt="stereo track">
+                <h3>Name</h3>
+                <p>Price</p>
+                <button class= "addButton" id="1">Add to cart</button>
+            </div>
+            <div class= "products" style="border: 1px solid rgb(105, 105, 105); border-radius: 5px; padding: 20px; margin: 30px; box-shadow: 3px 3px 5px rgb(51, 51, 51);">
+                <img src="https://i.ibb.co/34cB7Ln/multitrack.png" alt="multi track">
+                <h3>Name</h3>
+                <p>Price</p>
+                <button class= "addButton" id="2">Add to cart</button>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 20px; padding: 20px;">
+            <h2>Track 2</h2>
+            <div class= "products" style="border: 1px solid rgb(105, 105, 105); border-radius: 5px; padding: 20px; margin: 30px; box-shadow: 3px 3px 5px rgb(51, 51, 51);">
+                <img src="https://i.ibb.co/2M7K8BB/waveform.png" alt="stereo track">
+                <h3>Name</h3>
+                <p>Price</p>
+                <button class= "addButton" id="3">Add to cart</button>
+            </div>
+            <div class= "products" style="border: 1px solid rgb(105, 105, 105); border-radius: 5px; padding: 20px; margin: 30px; box-shadow: 3px 3px 5px rgb(51, 51, 51);">
+                <img src="https://i.ibb.co/34cB7Ln/multitrack.png" alt="multi track">
+                <h3>Name</h3>
+                <p>Price</p>
+                <button class= "addButton" id="4">Add to cart</button>
+            </div> 
+        </div>
+
+        <div style="text-align: center; margin: 20px; padding: 20px;">
+            <h2>Track 3</h2>
+            <div class= "products" style="border: 1px solid rgb(105, 105, 105); border-radius: 5px; padding: 20px; margin: 30px; box-shadow: 3px 3px 5px rgb(51, 51, 51);;">
+                <img src="https://i.ibb.co/2M7K8BB/waveform.png" alt="stereo track">
+                <h3>Name</h3>
+                <p>Price</p>
+                <button class= "addButton" id="5">Add to cart</button>
+            </div>
+            <div class= "products" style="border: 1px solid rgb(105, 105, 105); border-radius: 5px; padding: 20px; margin: 30px; box-shadow: 3px 3px 5px rgb(51, 51, 51);">
+                <img src="https://i.ibb.co/34cB7Ln/multitrack.png" alt="multi track">
+                <h3>Name</h3>
+                <p>Price</p>
+                <button class= "addButton" id="6">Add to cart</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+
+</body>
+</html>
