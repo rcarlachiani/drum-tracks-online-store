@@ -6,11 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@500&family=Raleway:wght@200&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body style="font-family: 'Raleway', sans-serif;">
 
+    <div id="alert" style="display: none;">
+        <p style="display: flex; justify-content: center; width: 320px; position: fixed; background-color: rgb(228, 214, 188); border: 1px solid black; border-radius: 5px; box-shadow: 2px 2px 3px rgb(83, 83, 83); padding: 5px;">
+            <img src="https://i.ibb.co/jvJ2xSZ/carrito.png" alt="carrito" style="width: 15px; height: 15px; margin-right: 10px;">
+            The product was added to the cart
+        </p>
+    </div>
+    <div id="noCart" style="display: none;">
+        <p style="display: flex; justify-content: center; width: 180px; position: fixed; background-color: rgb(228, 214, 188); border: 1px solid black; border-radius: 5px; box-shadow: 2px 2px 3px rgb(83, 83, 83); padding: 5px;">
+            <img src="https://i.ibb.co/jvJ2xSZ/carrito.png" alt="carrito" style="width: 15px; height: 15px; margin-right: 10px;">
+            Your cart is empty
+        </p>
+    </div>
     <div style="display: flex; justify-content: center;">
         <img src="https://i.ibb.co/vQHZq32/snLogo.png" alt="store logo" style="margin-right: 20px;">
         <h1>
@@ -85,7 +98,6 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
 
 </body>

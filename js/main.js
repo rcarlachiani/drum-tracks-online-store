@@ -56,32 +56,41 @@ function addCart (e) {
             carrito.push(productsArr[i].name + " - " + productsArr[i].price)
             let carritoJSON = JSON.stringify(productsArr[i])
             sessionStorage.setItem(productId, carritoJSON)
-            alert("Se agrego " + " '" + productsArr[i].name + "' " +  " al carrito")
             let carritoHTML = document.createElement("li")
             carritoHTML.innerHTML = productsArr[i].name + " - " + productsArr[i].price 
             $("#cart").append(carritoHTML)
             updateContent()
+            animateBuy()
         }    
     }
 }
 
+// Funcion que lanza un alerta animado cada vez que un producto se agrega al carrito
+function animateBuy () {
+    $("#alert").fadeIn()
+               .delay(1000)
+               .fadeOut() 
+}
+
+
 // Funcion que muestra el carrito si es que tiene productos, quitando el display none 
 function showCart () {
     if (carrito.length == 0) {
-        alert("Su carrito no contiene productos")
+        $("#noCart").fadeIn()
+        .delay(1000)
+        .fadeOut() 
     } else {
-        $("#cart").css("display", "block")
+        $("#cart").slideDown()  
     }
 }
 
 // Funcion que reinicia el contador, vacia el carrito, storage y el HTML creado
 function emptyCart () {
+    $("#cart").hide("slow")
+    $("#cart").html('')
     carrito = []
     counterHTML.innerHTML = " (" + carrito.length + ") " 
-    $("#cart").css("display", "none")
-    $("#cart").html('')
     sessionStorage.clear()
-    alert("Su carrito fue vaciado")
 }
 
 // Funcion que actualiza el contador del carrito
