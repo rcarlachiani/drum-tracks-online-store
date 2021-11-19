@@ -8,22 +8,22 @@ let addButtonDOM = document.getElementsByClassName("addButton") // Botones para 
 // Instanciado de carrito y productos
 let carrito = []
 let productsArr = []
-productsArr.push(new Product("1", "Rock stereo track", "U$S2", 1))
-productsArr.push(new Product("2", "Rock multi track", "U$S10", 1))
-productsArr.push(new Product("3", "Indie stereo track", "U$S2", 1))
-productsArr.push(new Product("4", "Indie multi track", "U$S10", 1))
-productsArr.push(new Product("5", "Metal stereo track", "U$S2", 1))
-productsArr.push(new Product("6", "Metal multi track", "U$S10", 1))
+productsArr.push(new Product("0", "Rock stereo track", "U$S2", 1))
+productsArr.push(new Product("1", "Rock multi track", "U$S10", 1))
+productsArr.push(new Product("2", "Indie stereo track", "U$S2", 1))
+productsArr.push(new Product("3", "Indie multi track", "U$S10", 1))
+productsArr.push(new Product("4", "Metal stereo track", "U$S2", 1))
+productsArr.push(new Product("5", "Metal multi track", "U$S10", 1))
 
 // Bucle que toma los hijos del contenedor "productsDOM" y reemplaza su contenido por el de los productos
 for (i=0; i<productsArr.length; i++) {
     productsDOM[i].children[1].textContent = productsArr[i].name
     productsDOM[i].children[2].textContent = productsArr[i].price
-}
-
-// Evento del boton "Add cart" 
-for (button of addButtonDOM) {
-    button.addEventListener("click", addCart)
+    
+    // Evento del boton "Add cart" 
+    for (button of addButtonDOM) {
+        button.addEventListener("click", addCart)
+    }
 }
 
 // Evento del boton "Show cart"
@@ -31,6 +31,25 @@ $("#showCart").on("click", showCart)
 
 // Evento del boton "Empty cart"
 $("#removeCart").on("click", emptyCart)
+
+//Creacion de la seccion HTML del clima y consumo de la API
+$.ajax({
+    url: 'http://api.openweathermap.org/data/2.5/weather',
+    type: 'GET',
+    data: {
+        q: 'Santa Fe',
+        appid: 'f08969ce7afd98e3b62850ecee404a35',
+        dataType: 'jsonp',
+        units: 'metric'
+    },
+    success: function (data) {
+        console.log(data)
+        let icono = data.weather[0].icon
+        let iconoURL = 'http://openweathermap.org/img/w/' + icono + ".png"
+        $('#icono').attr("src", iconoURL)
+        $('#weather').append(`<p>${data.name} - ${data.weather[0].main}  -  ${data.main.temp_max}º</p>`)
+    }
+})
 
 // Creacion del contador en HTML
 let counterHTML = document.createElement("h3")
