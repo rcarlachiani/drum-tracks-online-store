@@ -33,23 +33,29 @@ $("#showCart").on("click", showCart)
 $("#removeCart").on("click", emptyCart)
 
 //Creacion de la seccion HTML del clima y consumo de la API
-$.ajax({
-    url: 'http://api.openweathermap.org/data/2.5/weather',
-    type: 'GET',
-    data: {
-        q: 'Santa Fe',
-        appid: 'f08969ce7afd98e3b62850ecee404a35',
-        dataType: 'jsonp',
-        units: 'metric'
-    },
-    success: function (data) {
-        console.log(data)
-        let icono = data.weather[0].icon
-        let iconoURL = 'http://openweathermap.org/img/w/' + icono + ".png"
-        $('#icono').attr("src", iconoURL)
-        $('#weather').append(`<p>${data.name} - ${data.weather[0].main}  -  ${data.main.temp_max}º</p>`)
-    }
-})
+
+navigator.geolocation.getCurrentPosition(mostrarGeo)
+function mostrarGeo(position){
+    var lat = position.coords.latitude
+    var long = position.coords.longitude
+    $.ajax({
+        url: 'http://api.openweathermap.org/data/2.5/weather',
+        type: 'GET',
+        data: {
+            lat: lat,
+            lon: long,
+            appid: 'f08969ce7afd98e3b62850ecee404a35',
+            dataType: 'jsonp',
+            units: 'metric'
+        },
+        success: function (data) {
+            let icono = data.weather[0].icon
+            let iconoURL = 'http://openweathermap.org/img/w/' + icono + ".png"
+            $('#icono').attr("src", iconoURL)
+            $('#weather').append(`<p>${data.name} - ${data.weather[0].main}  -  ${data.main.temp_max}º</p>`)
+        }
+    })
+}
 
 // Creacion del contador en HTML
 let counterHTML = document.createElement("h3")
@@ -69,20 +75,16 @@ function Product (id, name, price, stock) {
 // Funcion que añade producto al storage y al carrito, creando el producto en una porcion de HTML vacio, oculto con display none y sumando al contador
 function addCart (e) {
     let targetId = e.target.id
-    for (i=0; i<productsArr.length; i++) {
-        let productId = productsArr[i].id
-        if (productId == targetId) {
-            carrito.push(productsArr[i].name + " - " + productsArr[i].price)
-            let carritoJSON = JSON.stringify(productsArr[i])
-            sessionStorage.setItem(productId, carritoJSON)
-            let carritoHTML = document.createElement("li")
-            carritoHTML.innerHTML = productsArr[i].name + " - " + productsArr[i].price 
-            $("#cart").append(carritoHTML)
-            updateContent()
-            animateBuy()
-        }    
-    }
-}
+    carrito.push(productsArr[targetId].name + " - " + productsArr[targetId].price)
+    let carritoJSON = JSON.stringify(carrito)
+    sessionStorage.setItem("carrito", carritoJSON)
+    let carritoHTML = document.createElement("li")
+    carritoHTML.innerHTML = productsArr[targetId].name + " - " + productsArr[targetId].price 
+    $("#cart").append(carritoHTML)
+    updateContent()
+    animateBuy()
+}    
+
 
 // Funcion que lanza un alerta animado cada vez que un producto se agrega al carrito
 function animateBuy () {
@@ -90,7 +92,6 @@ function animateBuy () {
                .delay(1000)
                .fadeOut() 
 }
-
 
 // Funcion que muestra el carrito si es que tiene productos, quitando el display none 
 function showCart () {
