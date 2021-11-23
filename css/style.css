@@ -1,0 +1,133 @@
+.none {
+    display: none;
+}
+
+#pAlert {
+    display: flex; 
+    justify-content: center; 
+    width: 320px; 
+    position: fixed; 
+    background-color: rgb(228, 214, 188); 
+    border: 1px solid black; 
+    border-radius: 5px; 
+    box-shadow: 2px 2px 3px rgb(83, 83, 83); 
+    padding: 5px;
+}
+
+.imgAlert {
+    width: 15px; 
+    height: 15px; 
+    margin-right: 10px;
+}
+
+#pNoCart {
+    display: flex; 
+    justify-content: center; 
+    width: 180px; 
+    position: fixed; 
+    background-color: rgb(228, 214, 188); 
+    border: 1px solid black; 
+    border-radius: 5px; 
+    box-shadow: 2px 2px 3px rgb(83, 83, 83); 
+    padding: 5px;
+}
+
+
+#apiContainer {
+    display: grid; 
+    grid-template-columns: 250px 600px 220px; 
+    justify-content: space-around; 
+    justify-items: center; 
+    margin-top: 30px;
+}
+
+#tittle {
+    display: grid; 
+    justify-items: center;
+}
+
+#imgTittle {
+    margin-right: 20px;
+}
+
+#weatherContainer {
+    display: grid; 
+    justify-items: center;
+    padding: 5px; 
+    border-radius: 5px; 
+}
+
+#pWeather {
+    font-size: 15px; 
+    font-weight: bold;
+}
+
+#weather {
+    display: grid; 
+    justify-items: center;
+}
+
+#cartHeader {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-top: 20px;
+}
+
+#imgCart {
+    width: 30px; 
+    margin: 10px;
+}
+
+#h2Cart {
+    font-size: 30px; 
+    margin: 10px;
+}
+
+#btnContainer {
+    display: flex; 
+    justify-content: center;
+}
+
+.btnCart {
+    width: 80px; 
+    margin: 10px;
+}
+
+#cartDOM {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+}
+
+#cart {
+    background-color: rgb(230, 230, 230); 
+    border: 1px solid black; 
+    border-radius: 5px; 
+    padding: 10px 15px 10px 30px ; 
+    display: none; 
+    box-shadow: 2px 2px 5px rgb(87, 87, 87); 
+    font-weight: bold; 
+    margin-top: 30px
+}
+
+.container {
+    display: flex; 
+    justify-content: space-around; 
+    width: 1200px; 
+    margin: 0 auto
+}
+
+.cardContainer {
+    text-align: center; 
+    padding: 20px; 
+    margin: 20px;
+}
+
+.products {
+    border: 1px solid rgb(105, 105, 105); 
+    border-radius: 5px; 
+    padding: 20px; 
+    margin: 30px; 
+    box-shadow: 3px 3px 5px rgb(51, 51, 51);
+}
