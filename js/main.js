@@ -32,8 +32,7 @@ $("#showCart").on("click", showCart)
 // Evento del boton "Empty cart"
 $("#removeCart").on("click", emptyCart)
 
-//Creacion de la seccion HTML del clima y consumo de la API
-
+// Creacion de la seccion HTML del clima y consumo de la API
 navigator.geolocation.getCurrentPosition(mostrarGeo)
 function mostrarGeo(position){
     var lat = position.coords.latitude

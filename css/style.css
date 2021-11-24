@@ -8,10 +8,10 @@
     width: 320px; 
     position: fixed; 
     background-color: rgb(228, 214, 188); 
-    border: 1px solid black; 
     border-radius: 5px; 
-    box-shadow: 2px 2px 3px rgb(83, 83, 83); 
+    box-shadow: 2px 2px 3px rgba(83, 83, 83, 0.705); 
     padding: 5px;
+    margin: 0;
 }
 
 .imgAlert {
@@ -25,13 +25,12 @@
     justify-content: center; 
     width: 180px; 
     position: fixed; 
-    background-color: rgb(228, 214, 188); 
-    border: 1px solid black; 
+    background-color: rgb(228, 214, 188);  
     border-radius: 5px; 
-    box-shadow: 2px 2px 3px rgb(83, 83, 83); 
+    box-shadow: 2px 2px 3px rgba(83, 83, 83, 0.705); 
     padding: 5px;
+    margin: 0;
 }
-
 
 #apiContainer {
     display: grid; 
@@ -53,18 +52,17 @@
 #weatherContainer {
     display: grid; 
     justify-items: center;
-    padding: 5px; 
-    border-radius: 5px; 
-}
-
-#pWeather {
-    font-size: 15px; 
-    font-weight: bold;
 }
 
 #weather {
     display: grid; 
-    justify-items: center;
+    justify-items: center; 
+    padding: 15px 20px 20px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    background-image: url(https://i.ibb.co/87P1Byp/cloud.png);
+    background-size: contain;
+    background-repeat: no-repeat;  
 }
 
 #cartHeader {
@@ -90,8 +88,18 @@
 }
 
 .btnCart {
-    width: 80px; 
+    width: 80px;
+    padding: 5px; 
     margin: 10px;
+    background-color: rgb(228, 205, 228);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 2px 2px 4px rgba(51, 51, 51, 0.473);
+}
+
+.btnCart:hover{
+    transform: scale(1.1);
+    transition: 200ms;
 }
 
 #cartDOM {
@@ -102,16 +110,15 @@
 
 #cart {
     background-color: rgb(230, 230, 230); 
-    border: 1px solid black; 
-    border-radius: 5px; 
+    border-radius: 3px; 
     padding: 10px 15px 10px 30px ; 
     display: none; 
-    box-shadow: 2px 2px 5px rgb(87, 87, 87); 
+    box-shadow: 2px 2px 5px rgba(87, 87, 87, 0.678); 
     font-weight: bold; 
     margin-top: 30px
 }
 
-.container {
+.divCards {
     display: flex; 
     justify-content: space-around; 
     width: 1200px; 
@@ -124,10 +131,41 @@
     margin: 20px;
 }
 
+.addButton {
+    width: 80px;
+    padding: 5px; 
+    background-color: rgb(228, 205, 228);
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgba(51, 51, 51, 0.815);
+    border: none;
+}
+
+.addButton:hover{
+    transform: scale(1.1);
+    transition: 200ms;
+}
+
 .products {
-    border: 1px solid rgb(105, 105, 105); 
-    border-radius: 5px; 
-    padding: 20px; 
-    margin: 30px; 
-    box-shadow: 3px 3px 5px rgb(51, 51, 51);
+    border-radius: 8px; 
+    padding: 30px; 
+    margin: 30px 30px 80px 30px; 
+    box-shadow: 2px 2px 6px rgba(51, 51, 51, 0.733);
+}
+
+.products.rock {
+    background-image: url(https://i.ibb.co/QjhL4DH/rock.png);
+    background-repeat: no-repeat ;
+    background-size: cover;
+}
+
+.products.indie {
+    background-image: url(https://i.ibb.co/3NhLL96/indie.png);
+    background-repeat: no-repeat ;
+    background-size: cover;
+}
+
+.products.metal {
+    background-image: url(https://i.ibb.co/zZ4x1Vk/metal.png);
+    background-repeat: no-repeat ;
+    background-size: cover;
 }
