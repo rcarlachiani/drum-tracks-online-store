@@ -8,17 +8,17 @@ let addButtonDOM = document.getElementsByClassName("addButton") // Botones para 
 // Instanciado de carrito y productos
 let carrito = []
 let productsArr = []
-productsArr.push(new Product("0", "Rock stereo track", "U$S2", 1))
-productsArr.push(new Product("1", "Rock multi track", "U$S10", 1))
-productsArr.push(new Product("2", "Indie stereo track", "U$S2", 1))
-productsArr.push(new Product("3", "Indie multi track", "U$S10", 1))
-productsArr.push(new Product("4", "Metal stereo track", "U$S2", 1))
-productsArr.push(new Product("5", "Metal multi track", "U$S10", 1))
+productsArr.push(new Product("0", "Rock stereo track", 2, 1))
+productsArr.push(new Product("1", "Rock multi track", 10, 1))
+productsArr.push(new Product("2", "Indie stereo track", 2, 1))
+productsArr.push(new Product("3", "Indie multi track", 10, 1))
+productsArr.push(new Product("4", "Metal stereo track", 2, 1))
+productsArr.push(new Product("5", "Metal multi track", 10, 1))
 
 // Bucle que toma los hijos del contenedor "productsDOM" y reemplaza su contenido por el de los productos
 for (i=0; i<productsArr.length; i++) {
     productsDOM[i].children[1].textContent = productsArr[i].name
-    productsDOM[i].children[2].textContent = productsArr[i].price
+    productsDOM[i].children[2].textContent = `u$s` + productsArr[i].price
 }
 
 // Evento del boton "Add cart" 
@@ -56,7 +56,7 @@ function mostrarGeo(position){
     })
 }
 
-// Creacion del contador en HTML
+// Creacion del contador del carrito en HTML
 let counterHTML = document.createElement("h3")
 counterHTML.innerHTML = " (" + carrito.length + ") "
 $("#counter").append(counterHTML)
@@ -82,13 +82,14 @@ function addCart (e) {
             let inputValue = itemIp[i]
             inputValue.value++
             carrito[i].quantity++
+            cartTotal()
             return null;
         }
     }
     carrito.push(productsArr[targetId])
     storageCart()
     renderCart(targetId)
-    updateContent()
+    updateContent(targetId)
     animateBuy()
 } 
 
@@ -101,8 +102,9 @@ function storageCart(){
 // Funcion que renderiza el carrito en una seccion HTML
 function renderCart(targetId) {
     let carritoHTML = document.createElement("li")
-    carritoHTML.innerHTML = `<input type="counter" class="itemInput" style="width: 20px; text-align: center;" value="${productsArr[targetId].quantity}">`+ " - " + productsArr[targetId].name + " - " + productsArr[targetId].price 
+    carritoHTML.innerHTML = `<input type="counter" class="itemInput" style="width: 20px; text-align: center;" value="${productsArr[targetId].quantity}">`+ " - " + productsArr[targetId].name + " - " + " u$s" + productsArr[targetId].price 
     $("#cart").append(carritoHTML)
+    cartTotal()
 }
 
 // Funcion que muestra el carrito si es que tiene productos, quitando el display none 
@@ -125,6 +127,8 @@ function emptyCart () {
     }
     carrito = []
     counterHTML.innerHTML = " (" + carrito.length + ") "
+    let itemCartTotal = document.getElementById("total")
+    itemCartTotal.innerHTML = `Total= u$s0`
     sessionStorage.clear()
 }
 
@@ -138,4 +142,14 @@ function animateBuy () {
 // Funcion que actualiza el contador del carrito
 function updateContent () {
     counterHTML.innerHTML = " (" + carrito.length + ") "
+}
+
+function cartTotal(){
+    let total = 0;
+    let itemCartTotal = document.getElementById("total")
+    carrito.forEach((Product)=> {
+        const precio = Product.price
+        total = total + precio * Product.quantity
+    })
+    itemCartTotal.innerHTML = `Total= u$s${total}`
 }

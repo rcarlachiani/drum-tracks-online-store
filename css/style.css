@@ -74,7 +74,18 @@ body {
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    margin-top: 30px;
+    margin-top: 12px;
+}
+
+#totalContainer{
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    margin: 0px; 
+}
+
+#counterTotal{
+    font-size: 12px;
 }
 
 #imgCart {
