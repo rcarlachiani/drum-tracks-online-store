@@ -19,11 +19,11 @@ productsArr.push(new Product("5", "Metal multi track", "U$S10", 1))
 for (i=0; i<productsArr.length; i++) {
     productsDOM[i].children[1].textContent = productsArr[i].name
     productsDOM[i].children[2].textContent = productsArr[i].price
-    
-    // Evento del boton "Add cart" 
-    for (button of addButtonDOM) {
-        button.addEventListener("click", addCart)
-    }
+}
+
+// Evento del boton "Add cart" 
+for (button of addButtonDOM) {
+    button.addEventListener("click", addCart)
 }
 
 // Evento del boton "Show cart"
@@ -64,32 +64,45 @@ $("#counter").append(counterHTML)
 ///////////////// FUNCIONES /////////////////
 
 // Funcion que construye los productos
-function Product (id, name, price, stock) {
+function Product (id, name, price, quantity) {
     this.id = id
     this.name = name
     this.price = price
-    this.stock = stock
+    this.quantity = quantity
 }
 
-// Funcion que añade producto al storage y al carrito, creando el producto en una porcion de HTML vacio, oculto con display none y sumando al contador
+// Funcion que añade producto al carrito e integra las funciones para actualizar los contadores de cantidad de productos en carrito y cantidades de productos
 function addCart (e) {
     let targetId = e.target.id
-    carrito.push(productsArr[targetId].name + " - " + productsArr[targetId].price)
-    let carritoJSON = JSON.stringify(carrito)
-    sessionStorage.setItem("carrito", carritoJSON)
-    let carritoHTML = document.createElement("li")
-    carritoHTML.innerHTML = productsArr[targetId].name + " - " + productsArr[targetId].price 
-    $("#cart").append(carritoHTML)
+
+    let itemIp = document.getElementsByClassName("itemInput")
+
+    for (i=0; i<carrito.length; i++){
+        if (carrito[i].id === targetId) {
+            let inputValue = itemIp[i]
+            inputValue.value++
+            carrito[i].quantity++
+            return null;
+        }
+    }
+    carrito.push(productsArr[targetId])
+    storageCart()
+    renderCart(targetId)
     updateContent()
     animateBuy()
-}    
+} 
 
+//Funcion que guarda el carrito en el storage
+function storageCart(){
+    let carritoJSON = JSON.stringify(carrito)
+    sessionStorage.setItem("carrito", carritoJSON)
+}
 
-// Funcion que lanza un alerta animado cada vez que un producto se agrega al carrito
-function animateBuy () {
-    $("#alert").fadeIn()
-               .delay(1000)
-               .fadeOut() 
+// Funcion que renderiza el carrito en una seccion HTML
+function renderCart(targetId) {
+    let carritoHTML = document.createElement("li")
+    carritoHTML.innerHTML = `<input type="counter" class="itemInput" style="width: 20px; text-align: center;" value="${productsArr[targetId].quantity}">`+ " - " + productsArr[targetId].name + " - " + productsArr[targetId].price 
+    $("#cart").append(carritoHTML)
 }
 
 // Funcion que muestra el carrito si es que tiene productos, quitando el display none 
@@ -99,7 +112,7 @@ function showCart () {
         .delay(1000)
         .fadeOut() 
     } else {
-        $("#cart").slideDown()  
+        $("#cart").slideDown()
     }
 }
 
@@ -107,9 +120,19 @@ function showCart () {
 function emptyCart () {
     $("#cart").hide("slow")
     $("#cart").html('')
+    for (i=0; i<carrito.length; i++){
+        carrito[i].quantity = 1
+    }
     carrito = []
-    counterHTML.innerHTML = " (" + carrito.length + ") " 
+    counterHTML.innerHTML = " (" + carrito.length + ") "
     sessionStorage.clear()
+}
+
+// Funcion que lanza un alerta animado cada vez que un producto se agrega al carrito
+function animateBuy () {
+    $("#alert").fadeIn()
+               .delay(1000)
+               .fadeOut() 
 }
 
 // Funcion que actualiza el contador del carrito

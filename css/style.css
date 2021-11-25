@@ -61,17 +61,13 @@ body {
 #weather {
     display: grid; 
     justify-items: center;
-    padding-top: 22px;
-    padding-bottom: 8px;
+    padding: 20px;
     font-weight: bold;
+    font-size: 14px;
     background-image: url(https://i.ibb.co/XpYCQS0/Cloud-ok.png);
     background-size: contain;
     background-position: bottom;
     background-repeat: no-repeat;
-}
-
-#icono{
-    width: 70px;
 }
 
 #cartHeader {
@@ -127,7 +123,7 @@ body {
     display: none; 
     box-shadow: 2px 2px 5px rgba(87, 87, 87, 0.678); 
     font-weight: bold; 
-    margin-top: 30px
+    margin-top: 30px;
 }
 
 .divCards {
