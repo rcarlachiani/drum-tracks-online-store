@@ -7,57 +7,53 @@ body {
 }
 
 /* Estilos de alertas */
-#pAlert {
-    display: flex; 
+.pAlert {
+    display: flex;
     justify-content: center; 
-    width: 320px; 
+    width: 320px;
+    padding: 10px;
+    margin: 0px; 
     position: fixed; 
     background-color: rgb(226, 198, 145); 
     border-radius: 5px; 
     box-shadow: 2px 2px 3px rgba(83, 83, 83, 0.705); 
-    padding: 5px;
-    margin: 0;
 }
 .imgAlert {
     width: 15px; 
     height: 15px; 
     margin-right: 10px;
 }
-#pNoCart {
-    display: flex; 
-    justify-content: center; 
-    width: 180px; 
-    position: fixed; 
-    background-color: rgb(226, 198, 145);  
-    border-radius: 5px; 
-    box-shadow: 2px 2px 3px rgba(83, 83, 83, 0.705); 
-    padding: 5px;
-    margin: 0;
-}
 
 /* Estilos de la API, titulo y carrito */
+#headerContainer {
+    display: grid; 
+    grid-template-columns: 220px 600px 250px; 
+    justify-content: space-around; 
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
 #cartHeader {
     display: flex; 
     align-items: center; 
-    justify-content: center; 
-    margin-top: 12px;
+    justify-content: center;
+    height: 40px; 
 }
 #totalContainer{
     display: flex; 
     align-items: center; 
     justify-content: center;
-    margin: 0px; 
+    font-size: 15px;
 }
 #counterTotal{
     font-size: 12px;
 }
 #imgCart {
+    margin-right: 6px;
     width: 30px; 
-    margin: 10px;
 }
 #h2Cart {
     font-size: 25px; 
-    margin: 10px;
 }
 #btnContainer {
     display: flex; 
@@ -80,8 +76,7 @@ body {
     display: flex;
     flex-direction: column; 
     align-items: flex-start;
-    margin-top: 0px;
-    margin-left: 50px;
+    margin-left: 9px;
 }
 #cart {
     list-style-image: url(https://i.ibb.co/WWG42pv/audio-track.png);
@@ -90,23 +85,14 @@ body {
     padding: 10px 15px 10px 30px ; 
     display: none; 
     box-shadow: 2px 2px 5px rgba(87, 87, 87, 0.678); 
-    font-weight: bold; 
-    margin-top: 30px;
+    font-weight: bold;  
 }
-#tittle {
+#tittleContainer {
     display: grid; 
     justify-items: center;
 }
 #imgTittle {
     margin-right: 20px;
-}
-#apiContainer {
-    display: grid; 
-    grid-template-columns: 250px 600px 220px; 
-    justify-content: space-around; 
-    align-items: flex-end;
-    margin-top: 20px;
-    margin-bottom: 0px;
 }
 #weatherContainer {
     display: grid; 
@@ -128,7 +114,7 @@ body {
     display: flex; 
     justify-content: space-around; 
     width: 1200px; 
-    margin: 0 auto
+    margin: 0 auto;
 }
 .cardContainer {
     text-align: center; 
