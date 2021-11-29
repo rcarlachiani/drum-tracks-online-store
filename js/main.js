@@ -32,7 +32,7 @@ function mostrarGeo(position){
     var lat = position.coords.latitude
     var long = position.coords.longitude
     $.ajax({
-        url: 'http://api.openweathermap.org/data/2.5/weather',
+        url: 'https://api.openweathermap.org/data/2.5/weather',
         type: 'GET',
         data: {
             lat: lat,
@@ -43,7 +43,7 @@ function mostrarGeo(position){
         },
         success: function (data) {
             let icono = data.weather[0].icon
-            let iconoURL = 'http://openweathermap.org/img/w/' + icono + ".png"
+            let iconoURL = 'https://openweathermap.org/img/w/' + icono + ".png"
             $('#icono').attr("src", iconoURL)
             $('#weather').append(`<p>${data.name} - ${data.weather[0].main}  -  ${data.main.temp_max}º</p>`)
         }
