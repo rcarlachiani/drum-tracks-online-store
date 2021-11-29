@@ -117,6 +117,21 @@ function storageCart(){
     sessionStorage.setItem("carrito", JSON.stringify(carrito))
 }
 
+// Funcion que carga y renderiza el carrito si existe en el storage
+window.onload = function(){
+    let sStorage = JSON.parse(sessionStorage.getItem('carrito'));
+    if (sStorage !== null){
+        for (i=0; i<sStorage.length; i++){
+            carrito.push(sStorage[i])
+            let carritoHTML = document.createElement("li")
+            carritoHTML.innerHTML = `<input type="counter" class="itemInput" style="width: 20px; text-align: center;" value="${sStorage[i].quantity}">`+ " - " + sStorage[i].name + " - " + " u$s" + sStorage[i].price 
+            $("#cart").append(carritoHTML)
+            cartTotal()
+            updateContent()
+        }
+    }    
+}
+
 // Funcion que actualiza el contador del carrito
 function updateContent () {
     counterHTML.innerHTML = " (" + carrito.length + ") "
