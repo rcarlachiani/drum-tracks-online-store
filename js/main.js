@@ -21,16 +21,10 @@ for (i=0; i<productsArr.length; i++) {
     productsDOM[i].children[2].textContent = `u$s` + productsArr[i].price
 }
 
-// Evento del boton "Add cart" 
-for (button of addButtonDOM) {
-    button.addEventListener("click", addCart)
-}
-
-// Evento del boton "Show cart"
-$("#showCart").on("click", showCart)
-
-// Evento del boton "Empty cart"
-$("#removeCart").on("click", emptyCart)
+// Creacion del contador del carrito en HTML
+let counterHTML = document.createElement("h3")
+counterHTML.innerHTML = " (" + carrito.length + ") "
+$("#counter").append(counterHTML)
 
 // Creacion de la seccion HTML del clima y consumo de la API
 navigator.geolocation.getCurrentPosition(mostrarGeo)
@@ -56,10 +50,16 @@ function mostrarGeo(position){
     })
 }
 
-// Creacion del contador del carrito en HTML
-let counterHTML = document.createElement("h3")
-counterHTML.innerHTML = " (" + carrito.length + ") "
-$("#counter").append(counterHTML)
+// Evento del boton "Add cart" 
+for (button of addButtonDOM) {
+    button.addEventListener("click", addCart)
+}
+
+// Evento del boton "Show cart"
+$("#showCart").on("click", showCart)
+
+// Evento del boton "Empty cart"
+$("#removeCart").on("click", emptyCart)
 
 ///////////////// FUNCIONES /////////////////
 
@@ -71,7 +71,7 @@ function Product (id, name, price, quantity) {
     this.quantity = quantity
 }
 
-// Funcion que añade producto al carrito e integra las funciones para actualizar los contadores de cantidad de productos en carrito y cantidades de productos
+// Funcion que añade producto al carrito y ejecuta las demas funciones de actualizacion de productos 
 function addCart (e) {
     let targetId = e.target.id
 
@@ -87,16 +87,9 @@ function addCart (e) {
         }
     }
     carrito.push(productsArr[targetId])
-    storageCart()
     renderCart(targetId)
     updateContent(targetId)
     animateBuy()
-} 
-
-//Funcion que guarda el carrito en el storage
-function storageCart(){
-    let carritoJSON = JSON.stringify(carrito)
-    sessionStorage.setItem("carrito", carritoJSON)
 }
 
 // Funcion que renderiza el carrito en una seccion HTML
@@ -105,6 +98,35 @@ function renderCart(targetId) {
     carritoHTML.innerHTML = `<input type="counter" class="itemInput" style="width: 20px; text-align: center;" value="${productsArr[targetId].quantity}">`+ " - " + productsArr[targetId].name + " - " + " u$s" + productsArr[targetId].price 
     $("#cart").append(carritoHTML)
     cartTotal()
+}
+
+// Funcion que suma el precio total de los items
+function cartTotal(){
+    let total = 0;
+    let itemCartTotal = document.getElementById("total")
+    carrito.forEach((Product)=> {
+        const precio = Product.price
+        total = total + precio * Product.quantity
+    })
+    itemCartTotal.innerHTML = `TOTAL= u$s${total}`
+    storageCart()
+}
+
+//Funcion que guarda el carrito en el storage
+function storageCart(){
+    sessionStorage.setItem("carrito", JSON.stringify(carrito))
+}
+
+// Funcion que actualiza el contador del carrito
+function updateContent () {
+    counterHTML.innerHTML = " (" + carrito.length + ") "
+}
+
+// Funcion que lanza un alerta animado cada vez que un producto se agrega al carrito
+function animateBuy () {
+    $("#alert").fadeIn()
+               .delay(1000)
+               .fadeOut() 
 }
 
 // Funcion que muestra el carrito si es que tiene productos, quitando el display none 
@@ -128,28 +150,6 @@ function emptyCart () {
     carrito = []
     counterHTML.innerHTML = " (" + carrito.length + ") "
     let itemCartTotal = document.getElementById("total")
-    itemCartTotal.innerHTML = `Total= u$s0`
+    itemCartTotal.innerHTML = `TOTAL= u$s0`
     sessionStorage.clear()
-}
-
-// Funcion que lanza un alerta animado cada vez que un producto se agrega al carrito
-function animateBuy () {
-    $("#alert").fadeIn()
-               .delay(1000)
-               .fadeOut() 
-}
-
-// Funcion que actualiza el contador del carrito
-function updateContent () {
-    counterHTML.innerHTML = " (" + carrito.length + ") "
-}
-
-function cartTotal(){
-    let total = 0;
-    let itemCartTotal = document.getElementById("total")
-    carrito.forEach((Product)=> {
-        const precio = Product.price
-        total = total + precio * Product.quantity
-    })
-    itemCartTotal.innerHTML = `Total= u$s${total}`
 }
