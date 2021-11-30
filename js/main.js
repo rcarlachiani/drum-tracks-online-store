@@ -75,17 +75,18 @@ function Product (id, name, price, quantity) {
 function addCart (e) {
     let targetId = e.target.id
 
-    let itemIp = document.getElementsByClassName("itemInput")
+    let itemInput = document.getElementsByClassName("itInput")
 
     for (i=0; i<carrito.length; i++){
         if (carrito[i].id === targetId) {
-            let inputValue = itemIp[i]
+            let inputValue = itemInput[i]
             inputValue.value++
             carrito[i].quantity++
             cartTotal()
             return null;
         }
     }
+
     carrito.push(productsArr[targetId])
     renderCart(targetId)
     updateContent(targetId)
@@ -95,7 +96,7 @@ function addCart (e) {
 // Funcion que renderiza el carrito en una seccion HTML
 function renderCart(targetId) {
     let carritoHTML = document.createElement("li")
-    carritoHTML.innerHTML = `<input type="counter" class="itemInput" style="width: 20px; text-align: center;" value="${productsArr[targetId].quantity}">`+ " - " + productsArr[targetId].name + " - " + " u$s" + productsArr[targetId].price 
+    carritoHTML.innerHTML = `<input type="counter" class="itInput" style="width: 20px; text-align: center;" value="${productsArr[targetId].quantity}">`+ " - " + productsArr[targetId].name + " - " + " u$s" + productsArr[targetId].price 
     $("#cart").append(carritoHTML)
     cartTotal()
 }

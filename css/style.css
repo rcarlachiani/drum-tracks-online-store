@@ -60,9 +60,9 @@ body {
     justify-content: center;
 }
 .btnCart {
-    width: 80px;
     padding: 5px; 
     margin: 10px;
+    font-size: 12px;
     background-color: rgb(224, 215, 196);
     border-radius: 5px;
     border: none;
