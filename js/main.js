@@ -3,10 +3,13 @@
 let productsDOM = document.getElementsByClassName("products") // div que contiene la descripcion del producto
 let addButtonDOM = document.getElementsByClassName("addButton") // Botones para añadir el producto al carrito
 
-///////////////// MAIN CODE /////////////////
+///////////////// INSTANCIADO Y CONSUMO DE DATOS /////////////////
 
-// Consumo de base de datos JSON 
-// Instanciado de carrito y productos
+// Carrito y array de productos creado a partir de base de datos JSON
+let carrito = []
+let productsArr = []
+
+// Consumo de base de datos desde archivo JSON e instanciado del array productos
 const fetchProducts = async () => {
     try {
         const res = await fetch('./data/products.json')
@@ -21,16 +24,30 @@ const fetchProducts = async () => {
     }
 }
 
-let carrito = []
-let productsArr = []
 fetchProducts()
+
+///////////////// EVENTOS /////////////////
+
+// Evento del boton "Add cart" 
+for (button of addButtonDOM) {
+    button.addEventListener("click", addCart)
+}
+
+// Evento del boton "Show cart"
+$("#showCart").on("click", showCart)
+
+// Evento del boton "Empty cart"
+$("#removeCart").on("click", emptyCart)
 
 // Creacion del contador del carrito en HTML
 let counterHTML = document.createElement("h3")
 counterHTML.innerHTML = " (" + carrito.length + ") "
 $("#counter").append(counterHTML)
 
-// Creacion de la seccion HTML del clima y consumo de la API
+
+///////////////// API /////////////////
+
+// Creacion de la seccion del clima con HTML dinamico y consumo de la API del clima + geolocalizacion
 navigator.geolocation.getCurrentPosition(mostrarGeo)
 function mostrarGeo(position){
     var lat = position.coords.latitude
@@ -54,20 +71,9 @@ function mostrarGeo(position){
     })
 }
 
-// Evento del boton "Add cart" 
-for (button of addButtonDOM) {
-    button.addEventListener("click", addCart)
-}
-
-// Evento del boton "Show cart"
-$("#showCart").on("click", showCart)
-
-// Evento del boton "Empty cart"
-$("#removeCart").on("click", emptyCart)
-
 ///////////////// FUNCIONES /////////////////
 
-// Funcion que añade producto al carrito y ejecuta las demas funciones de actualizacion de productos 
+// Funcion que añade producto al carrito y ejecuta las demas funciones de actualizacion de datos
 function addCart (e) {
     let targetId = e.target.id
 
@@ -89,7 +95,7 @@ function addCart (e) {
     animateBuy()
 }
 
-// Funcion que renderiza el carrito en una seccion HTML
+// Funcion que renderiza el carrito en una seccion HTML de manera dinamica
 function renderCart(targetId) {
     let carritoHTML = document.createElement("li")
     carritoHTML.innerHTML = `<input type="counter" class="itInput" style="width: 20px; text-align: center;" value="${productsArr[targetId].quantity}">`+ " - " + productsArr[targetId].name + " - " + " u$s" + productsArr[targetId].price 
@@ -97,7 +103,7 @@ function renderCart(targetId) {
     cartTotal()
 }
 
-// Funcion que suma el precio total de los items
+// Funcion que suma el precio total de los productos del carrito
 function cartTotal(){
     let total = 0;
     let itemCartTotal = document.getElementById("total")
@@ -109,12 +115,12 @@ function cartTotal(){
     storageCart()
 }
 
-//Funcion que guarda el carrito en el storage
+// Funcion que guarda el carrito en el storage
 function storageCart(){
     sessionStorage.setItem("carrito", JSON.stringify(carrito))
 }
 
-// Funcion que carga y renderiza el carrito si existe en el storage
+// Funcion que carga y renderiza el carrito si existe en el storage cuando se hace refresh
 window.onload = function(){
     let sStorage = JSON.parse(sessionStorage.getItem('carrito'));
     if (sStorage !== null){
@@ -141,7 +147,7 @@ function animateBuy () {
                .fadeOut() 
 }
 
-// Funcion que muestra el carrito si es que tiene productos, quitando el display none 
+// Funcion que muestra el carrito si es que tiene productos, quitando el display none que tiene por default
 function showCart () {
     if (carrito.length == 0) {
         $("#noCart").fadeIn()
