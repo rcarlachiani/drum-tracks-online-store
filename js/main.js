@@ -5,21 +5,26 @@ let addButtonDOM = document.getElementsByClassName("addButton") // Botones para 
 
 ///////////////// MAIN CODE /////////////////
 
+// Consumo de base de datos JSON 
 // Instanciado de carrito y productos
+const fetchProducts = async () => {
+    try {
+        const res = await fetch('./data/products.json')
+        const data = await res.json()
+        for (i=0; i<data.length; i++){
+            productsArr.push(data[i])
+            productsDOM[i].children[1].textContent = productsArr[i].name
+            productsDOM[i].children[2].textContent = `u$s` + productsArr[i].price
+        }
+    } catch (error) {
+        console.log(error)
+    }
+    console.log(productsArr)
+}
+
 let carrito = []
 let productsArr = []
-productsArr.push(new Product("0", "Rock stereo track", 2, 1))
-productsArr.push(new Product("1", "Rock multi track", 10, 1))
-productsArr.push(new Product("2", "Indie stereo track", 2, 1))
-productsArr.push(new Product("3", "Indie multi track", 10, 1))
-productsArr.push(new Product("4", "Metal stereo track", 2, 1))
-productsArr.push(new Product("5", "Metal multi track", 10, 1))
-
-// Bucle que toma los hijos del contenedor "productsDOM" y reemplaza su contenido por el de los productos
-for (i=0; i<productsArr.length; i++) {
-    productsDOM[i].children[1].textContent = productsArr[i].name
-    productsDOM[i].children[2].textContent = `u$s` + productsArr[i].price
-}
+fetchProducts()
 
 // Creacion del contador del carrito en HTML
 let counterHTML = document.createElement("h3")
@@ -62,14 +67,6 @@ $("#showCart").on("click", showCart)
 $("#removeCart").on("click", emptyCart)
 
 ///////////////// FUNCIONES /////////////////
-
-// Funcion que construye los productos
-function Product (id, name, price, quantity) {
-    this.id = id
-    this.name = name
-    this.price = price
-    this.quantity = quantity
-}
 
 // Funcion que añade producto al carrito y ejecuta las demas funciones de actualizacion de productos 
 function addCart (e) {
