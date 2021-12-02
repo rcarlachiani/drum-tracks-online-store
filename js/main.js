@@ -19,7 +19,6 @@ const fetchProducts = async () => {
     } catch (error) {
         console.log(error)
     }
-    console.log(productsArr)
 }
 
 let carrito = []
