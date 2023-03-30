@@ -1,17 +1,28 @@
-# :computer: Proyecto Final - Javascript - Coderhouse
-
-:gear: Tecnologías y herramientas utilizadas:
+:gb: EN
+<br>
+<br>
+:gear: Developed with:
 
 :zap: HTML
 <br/>
-:zap: Javascript
+:zap: Vanilla Javascript
 <br/>
 :zap: JQuery
 
-:bulb: El proyecto consiste en el desarrollo de un carrito de compras.
+Pre-recorded drum track store developed for Coderhouse's Front End Web Development course, Inital Javascript.
+<br>
+<br>
+
+:es: ES
+<br>
+<br>
+:gear: Desarrollado con:
+
+:zap: HTML
 <br/>
-En ésta oportunidad, el mismo se trata de una tienda de pistas de batería pre grabadas para utilizar en producción.
+:zap: Javascript Vanilla
 <br/>
-En principio fue desarrollado con JS Vanilla y luego, se incorporó el uso de la librería JQuery para la manipulación del DOM,
-incorporación de eventos, animaciones, etc.
-<br/> 
+:zap: JQuery
+
+Tienda de pistas pre-grabadas de batería presentada para la materia Javascript de la carrera de Desarrollo Web Front End de Coderhouse.
+
