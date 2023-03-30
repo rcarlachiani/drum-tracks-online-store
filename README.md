@@ -9,7 +9,7 @@
 <br/>
 :zap: JQuery
 
-Pre-recorded drum track store developed for Coderhouse's Front End Web Development course, Inital Javascript.
+Pre-recorded drum track store with climatic geolocalization developed for Coderhouse's Front End Web Development course, Inital Javascript.
 <br>
 <br>
 
@@ -24,5 +24,5 @@ Pre-recorded drum track store developed for Coderhouse's Front End Web Developme
 <br/>
 :zap: JQuery
 
-Tienda de pistas pre-grabadas de batería presentada para la materia Javascript de la carrera de Desarrollo Web Front End de Coderhouse.
+Tienda de pistas pre-grabadas de batería con geolocalización climática presentada para la materia Javascript de la carrera de Desarrollo Web Front End de Coderhouse.
 
